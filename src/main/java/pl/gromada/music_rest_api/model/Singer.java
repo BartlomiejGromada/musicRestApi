@@ -9,11 +9,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -25,17 +24,17 @@ public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSinger;
-    @NotBlank
+    @NotBlank(message = "{pl.gromada.model.Singer.firstName.notBlank.message}")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "{pl.gromada.model.Singer.lastName.notBlank.message}")
     private String lastName;
     private String nickname;
-    @NotBlank
-    @JsonFormat(pattern = "YYYY-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "{pl.gromada.model.Singer.dateOfBirth.notNull.message}")
     private Date dateOfBirth;
-    @ManyToMany(mappedBy = "singers")
+    @ManyToMany(mappedBy = "singers", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonBackReference
-    private Set<Song> songs = new HashSet<>();
+    private List<Song> songs = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -45,5 +44,12 @@ public class Singer {
                 ", lastName='" + lastName + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", dateOfBirth=" + dateOfBirth + "}";
+    }
+
+    public void removeSong(List<Song> songs) {
+        for (Song song : songs)
+            song.getSingers().remove(this);
+
+        this.getSongs().clear();
     }
 }
