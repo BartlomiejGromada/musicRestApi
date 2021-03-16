@@ -1,10 +1,7 @@
 package pl.gromada.music_rest_api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,6 +14,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Song {
 
@@ -34,6 +32,5 @@ public class Song {
     @JsonFormat(pattern = "YYYY-MM-dd")
     @NotNull(message = "{pl.gromada.model.Song.releaseDate.notNull.message}")
     private Date releaseDate;
-
 
 }

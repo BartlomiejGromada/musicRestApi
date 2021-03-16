@@ -35,7 +35,6 @@ public class ControllerAdvisor {
         List<String> errors = new ArrayList<>();
         for (ObjectError err : result.getAllErrors())
             errors.add(err.getDefaultMessage());
-
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 

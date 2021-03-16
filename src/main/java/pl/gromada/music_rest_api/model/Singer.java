@@ -2,10 +2,7 @@ package pl.gromada.music_rest_api.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +14,9 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 public class Singer {
 
