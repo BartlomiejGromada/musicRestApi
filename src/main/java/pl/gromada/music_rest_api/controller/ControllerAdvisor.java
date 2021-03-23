@@ -8,7 +8,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpClientErrorException;
 import pl.gromada.music_rest_api.exception.SingerNotFoundException;
 import pl.gromada.music_rest_api.exception.SongNotFoundException;
 
